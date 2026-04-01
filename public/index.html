@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sore Hening — Perjalanan Kembali ke Cahaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════
+   TOKENS & RESET
+══════════════════════════════════ */
+:root {
+  --cream: #FAF6EE;
+  --cream2: #F3EDE0;
+  --cream3: #E8DFC8;
+  --green: #1B4332;
+  --green2: #2D6A4F;
+  --green3: #52B788;
+  --gold: #B5833A;
+  --gold2: #D4A853;
+  --gold3: #F0CFA0;
+  --rose: #C9847A;
+  --rose2: #E8B4AE;
+  --charcoal: #2A2520;
+  --text: #3A3028;
+  --text2: #6B5F52;
+  --text3: #9B8F82;
+  --white: #FFFDF9;
+  --shadow: rgba(27,67,50,.10);
+  --shadow2: rgba(27,67,50,.18);
+  --r: 12px;
+  --r2: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold3); color: var(--green); }
+
+/* ══════════════════════════════════
+   GEOMETRIC PATTERN SVG BG
+══════════════════════════════════ */
+.geo-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%231B4332' stroke-width='0.8'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40Z'/%3E%3Cpath d='M40 10 L70 40 L40 70 L10 40Z'/%3E%3Ccircle cx='40' cy='40' r='15'/%3E%3Cpath d='M40 25 L55 40 L40 55 L25 40Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════
+   ORNAMENTAL DIVIDER
+══════════════════════════════════ */
+.ornament {
+  display: flex; align-items: center; gap: 14px;
+  margin: 0 auto 32px;
+  width: fit-content;
+  color: var(--gold2);
+  font-size: 18px;
+}
+.ornament::before, .ornament::after {
+  content: '';
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold2));
+}
+.ornament::after { background: linear-gradient(90deg, var(--gold2), transparent); }
+
+/* ══════════════════════════════════
+   NAVIGATION
+══════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,246,238,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cream3);
+  padding: 0 32px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 20px var(--shadow);
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand .moon { font-size: 16px; }
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Lora', serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  letter-spacing: .3px;
+  transition: color .2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--gold2);
+  transform: scaleX(0); transition: transform .25s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  background: var(--green) !important;
+  color: var(--cream) !important;
+  padding: 9px 20px !important;
+  border-radius: 30px !important;
+  font-size: 13px !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--green2) !important; }
+.nav-ham { display: none; background: none; border: none; cursor: pointer; color: var(--green); font-size: 22px; }
+.mobile-menu { display: none; }
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+}
+.hero-crescent {
+  position: absolute; top: 60px; right: 8%;
+  font-size: 90px; opacity: .07; line-height: 1;
+  animation: slow-rotate 30s linear infinite;
+  pointer-events: none;
+}
+@keyframes slow-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.hero-star-l {
+  position: absolute; top: 30%; left: 5%;
+  font-size: 48px; opacity: .05;
+  animation: slow-rotate 50s linear infinite reverse;
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green);
+  color: var(--cream);
+  padding: 8px 20px; border-radius: 30px;
+  font-family: 'Lora', serif; font-size: 12px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 16px rgba(27,67,50,.3);
+  animation: fade-up .7s ease both;
+}
+.hero-arabic {
+  font-family: 'Amiri', serif;
+  font-size: clamp(20px, 4vw, 32px);
+  color: var(--gold);
+  margin-bottom: 16px;
+  line-height: 1.6;
+  animation: fade-up .7s .1s ease both;
+  direction: rtl;
+}
+.hero-arabic-trans {
+  font-size: 13px; color: var(--text3); font-style: italic;
+  margin-bottom: 32px;
+  animation: fade-up .7s .15s ease both;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 86px);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+  animation: fade-up .8s .2s ease both;
+}
+h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+.hero-sub {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--text2);
+  max-width: 520px;
+  margin: 20px auto 42px;
+  line-height: 1.75;
+  font-weight: 400;
+  animation: fade-up .8s .3s ease both;
+}
+.hero-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  animation: fade-up .8s .4s ease both;
+}
+.btn-primary {
+  background: var(--green);
+  color: var(--cream);
+  padding: 15px 34px; border-radius: 50px;
+  font-family: 'Lora', serif; font-size: 15px; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all .25s;
+  box-shadow: 0 6px 24px rgba(27,67,50,.35);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--green2); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,67,50,.4); }
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  padding: 14px 32px; border-radius: 50px;
+  border: 1.5px solid var(--green);
+  font-family: 'Lora', serif; font-size: 15px; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  transition: all .25s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { background: var(--green); color: var(--cream); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase;
+  animation: bounce 2s ease infinite;
+}
+.hero-scroll span { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold2), transparent); }
+@keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+/* Stats row */
+.hero-stats {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  margin-top: 60px;
+  animation: fade-up .8s .5s ease both;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700; color: var(--green);
+  display: block;
+}
+.hero-stat-lbl { font-size: 12px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ══════════════════════════════════
+   SECTION COMMON
+══════════════════════════════════ */
+section {
+  position: relative; z-index: 1;
+  padding: 100px 24px;
+}
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.section-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold2); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-desc { font-size: 16px; color: var(--text2); max-width: 540px; line-height: 1.8; margin-bottom: 52px; }
+
+/* ══════════════════════════════════
+   ABOUT STRIP
+══════════════════════════════════ */
+.about-strip {
+  background: var(--green);
+  padding: 70px 24px;
+}
+.about-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.about-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 400; font-style: italic;
+  color: var(--cream);
+  line-height: 1.6;
+}
+.about-quote span { color: var(--gold2); font-weight: 600; font-style: normal; }
+.about-text { color: rgba(250,246,238,.75); font-size: 15px; line-height: 1.85; }
+.about-text p { margin-bottom: 14px; }
+.about-pillars {
+  margin-top: 28px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.pillar {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.pillar-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(212,168,83,.18); border: 1px solid rgba(212,168,83,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0; margin-top: 2px;
+}
+.pillar-text { font-size: 14px; color: rgba(250,246,238,.85); line-height: 1.5; }
+.pillar-text strong { color: var(--gold2); font-weight: 600; display: block; margin-bottom: 2px; }
+
+/* ══════════════════════════════════
+   BLOG
+══════════════════════════════════ */
+#blog { background: var(--white); }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.blog-card {
+  background: var(--cream);
+  border: 1px solid var(--cream3);
+  border-radius: var(--r2);
+  overflow: hidden;
+  transition: all .3s;
+  cursor: pointer;
+}
+.blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px var(--shadow2); }
+.blog-card-img {
+  height: 200px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.blog-card-img-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  transition: transform .4s;
+}
+.blog-card:hover .blog-card-img-inner { transform: scale(1.07); }
+.blog-card-body { padding: 24px; }
+.blog-tag {
+  display: inline-block;
+  background: var(--cream3);
+  color: var(--green);
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+.blog-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 600; color: var(--text);
+  line-height: 1.4; margin-bottom: 10px;
+  transition: color .2s;
+}
+.blog-card:hover .blog-card-title { color: var(--green); }
+.blog-card-excerpt { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 18px; }
+.blog-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text3); }
+.blog-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--cream3); }
+
+/* Featured blog post */
+.blog-featured {
+  grid-column: span 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.blog-featured .blog-card-img { height: 100%; min-height: 260px; }
+.blog-featured .blog-card-body { padding: 36px; display: flex; flex-direction: column; justify-content: center; }
+.blog-featured .blog-card-title { font-size: 26px; }
+
+.blog-load-more {
+  text-align: center; margin-top: 48px;
+}
+
+/* Blog modal */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(42,37,32,.65);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white); border-radius: var(--r2);
+  max-width: 720px; width: 100%;
+  max-height: 85vh; overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(27,67,50,.3);
+}
+.modal-header {
+  background: var(--green);
+  padding: 36px 40px 32px;
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(255,255,255,.15); border: none; border-radius: 50%;
+  width: 32px; height: 32px; cursor: pointer;
+  color: var(--cream); font-size: 16px; display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.modal-close:hover { background: rgba(255,255,255,.25); }
+.modal-tag { background: var(--gold); color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; display: inline-block; }
+.modal-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+.modal-meta { font-size: 13px; color: rgba(250,246,238,.6); }
+.modal-body { padding: 36px 40px; }
+.modal-body p { font-size: 15px; color: var(--text); line-height: 1.9; margin-bottom: 18px; }
+.modal-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green); margin: 28px 0 12px; }
+.modal-body blockquote {
+  border-left: 3px solid var(--gold2);
+  margin: 24px 0; padding: 14px 20px;
+  background: var(--cream);
+  border-radius: 0 var(--r) var(--r) 0;
+  font-style: italic; color: var(--text2); font-size: 15px; line-height: 1.75;
+}
+.modal-body .arabic-verse {
+  text-align: center; font-family: 'Amiri', serif; font-size: 22px;
+  color: var(--green); direction: rtl; margin: 24px 0 8px;
+  line-height: 1.8;
+}
+.modal-body .verse-trans { text-align: center; font-size: 13px; color: var(--text3); font-style: italic; margin-bottom: 24px; }
+
+/* ══════════════════════════════════
+   AFFILIATE STORE
+══════════════════════════════════ */
+#toko { background: var(--cream2); }
+.store-filters {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
+}
+.filter-btn {
+  padding: 8px 20px; border-radius: 30px; font-size: 13px; font-weight: 600;
+  font-family: 'Lora', serif; cursor: pointer; border: 1.5px solid var(--cream3);
+  background: var(--white); color: var(--text2); transition: all .2s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--green); color: var(--cream); border-color: var(--green);
+}
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.product-card {
+  background: var(--white);
+  border-radius: var(--r2); overflow: hidden;
+  border: 1px solid var(--cream3);
+  transition: all .3s;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px var(--shadow2); }
+.product-img {
+  height: 170px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+  position: relative; overflow: hidden;
+}
+.product-badge-new {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--rose); color: white;
+  font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+}
+.product-badge-best {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--gold); color: var(--green);
+  font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+}
+.product-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+.product-cat { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+.product-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 6px; flex: 1; }
+.product-desc { font-size: 12px; color: var(--text3); line-height: 1.6; margin-bottom: 14px; }
+.product-price { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 14px; }
+.product-price small { font-family: 'Lora', serif; font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 6px; text-decoration: line-through; }
+.product-affiliate-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--green); color: var(--cream);
+  padding: 11px; border-radius: 10px;
+  font-family: 'Lora', serif; font-size: 13px; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all .2s;
+  width: 100%;
+}
+.product-affiliate-btn:hover { background: var(--green2); transform: none; }
+.product-affiliate-btn.outline {
+  background: transparent; color: var(--green); border: 1.5px solid var(--green);
+}
+.product-affiliate-btn.outline:hover { background: var(--green); color: var(--cream); }
+.product-actions { display: flex; gap: 8px; }
+.product-actions .product-affiliate-btn { flex: 1; }
+.product-wishlist {
+  width: 42px; height: 42px; border-radius: 10px;
+  border: 1.5px solid var(--cream3); background: var(--cream);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0; transition: all .2s;
+}
+.product-wishlist:hover { border-color: var(--rose); background: var(--rose2); }
+
+/* Affiliate earnings banner */
+.earnings-banner {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green2) 100%);
+  border-radius: var(--r2);
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 52px; gap: 24px;
+  flex-wrap: wrap;
+}
+.earnings-text h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--cream); margin-bottom: 8px; }
+.earnings-text p { font-size: 14px; color: rgba(250,246,238,.75); max-width: 480px; line-height: 1.7; }
+.earnings-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+.earn-stat { text-align: center; }
+.earn-stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--gold2); display: block; }
+.earn-stat-lbl { font-size: 11px; color: rgba(250,246,238,.6); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+/* ══════════════════════════════════
+   SOCIAL POST CREATOR
+══════════════════════════════════ */
+#posting { background: var(--white); }
+.posting-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 36px; align-items: start;
+}
+.post-form { display: flex; flex-direction: column; gap: 18px; }
+.form-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 6px; display: block;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: var(--cream);
+  border: 1.5px solid var(--cream3); border-radius: var(--r);
+  padding: 12px 16px; font-family: 'Lora', serif;
+  font-size: 14px; color: var(--text); outline: none;
+  transition: border-color .2s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green3); }
+.form-textarea { min-height: 100px; resize: vertical; line-height: 1.7; }
+.platform-toggle {
+  display: flex; gap: 10px;
+}
+.plat-toggle-btn {
+  flex: 1; padding: 10px; border-radius: var(--r);
+  border: 1.5px solid var(--cream3); background: var(--cream);
+  font-family: 'Lora', serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-align: center;
+  color: var(--text2);
+}
+.plat-toggle-btn.active.ig { border-color: #E1306C; color: #E1306C; background: rgba(225,48,108,.07); }
+.plat-toggle-btn.active.tt { border-color: #00f2ea; color: #00837d; background: rgba(0,242,234,.07); }
+.gen-post-btn {
+  background: var(--green); color: var(--cream);
+  padding: 14px 28px; border-radius: 50px;
+  font-family: 'Lora', serif; font-size: 15px; font-weight: 600;
+  border: none; cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 6px 24px rgba(27,67,50,.3);
+}
+.gen-post-btn:hover { background: var(--green2); transform: translateY(-2px); }
+.gen-post-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+/* Phone preview */
+.phone-preview {
+  position: sticky; top: 90px;
+}
+.phone-frame-outer {
+  width: 280px; margin: 0 auto;
+  background: #1a1a1a; border-radius: 44px;
+  padding: 12px 8px;
+  border: 3px solid #2a2a2a;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
+}
+.phone-notch { width: 80px; height: 20px; background: #1a1a1a; border-radius: 0 0 14px 14px; margin: 0 auto 8px; }
+.phone-screen-inner { border-radius: 28px; overflow: hidden; background: #000; }
+
+/* IG preview */
+.ig-preview {
+  background: #fff; font-family: -apple-system, sans-serif;
+}
+.ig-header-bar {
+  display: flex; align-items: center;
+  padding: 10px 12px; border-bottom: .5px solid #efefef;
+  gap: 8px;
+}
+.ig-avatar-ring {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(45deg, #f9a825, #e91e63, #9c27b0);
+  padding: 2px;
+}
+.ig-avatar-inner2 {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--cream); font-weight: 700;
+}
+.ig-post-user { font-size: 12px; font-weight: 700; color: #262626; flex: 1; }
+.ig-post-more { color: #262626; font-size: 18px; }
+.ig-post-image {
+  height: 260px; background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+  padding: 20px;
+}
+.ig-post-image .post-icon { font-size: 48px; }
+.ig-post-image .post-text {
+  font-family: 'Amiri', serif; font-size: 16px; color: var(--cream);
+  text-align: center; line-height: 1.7;
+  direction: rtl;
+}
+.ig-post-actions {
+  padding: 8px 12px;
+  display: flex; gap: 12px; align-items: center;
+}
+.ig-post-likes { font-size: 12px; font-weight: 700; color: #262626; padding: 0 12px 4px; }
+.ig-post-caption-area {
+  font-size: 11px; color: #262626; padding: 0 12px 10px;
+  line-height: 1.5; max-height: 80px; overflow: hidden;
+}
+.ig-post-caption-area b { font-weight: 700; }
+.ig-hashtags-area { font-size: 10px; color: #00376b; padding: 0 12px 12px; line-height: 1.6; }
+
+/* TikTok preview */
+.tt-preview {
+  background: #000; height: 490px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 12px; position: relative; overflow: hidden;
+}
+.tt-bg-img {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; opacity: .18;
+}
+.tt-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 60%); }
+.tt-content-area { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 8px; }
+.tt-left-area { flex: 1; }
+.tt-username { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.tt-caption-text { font-size: 11px; color: rgba(255,255,255,.9); line-height: 1.5; margin-bottom: 6px; }
+.tt-music-bar { display: flex; align-items: center; gap: 5px; font-size: 10px; color: rgba(255,255,255,.7); }
+.tt-music-spin { animation: spin 3s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.tt-right-side { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.tt-icon-col { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff; font-size: 10px; }
+.tt-icon-col .icon { font-size: 22px; }
+.tt-progress-bar { height: 2px; background: rgba(255,255,255,.25); margin-top: 8px; border-radius: 2px; }
+.tt-progress-fill { height: 100%; background: #fff; width: 30%; border-radius: 2px; }
+
+/* Generated post output */
+.post-output {
+  background: var(--cream); border: 1.5px solid var(--cream3);
+  border-radius: var(--r2); padding: 22px; margin-top: 20px;
+  display: none;
+}
+.post-output.show { display: block; }
+.post-output-section { margin-bottom: 18px; }
+.post-output-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.post-output-text {
+  font-size: 13px; color: var(--text); line-height: 1.75;
+  background: var(--white); border: 1px solid var(--cream3);
+  border-radius: var(--r); padding: 14px 16px;
+  white-space: pre-wrap;
+}
+.post-copy-btn {
+  margin-top: 8px;
+  background: none; border: 1px solid var(--cream3); border-radius: 8px;
+  padding: 6px 14px; font-size: 12px; font-family: 'Lora', serif; font-weight: 600;
+  color: var(--text2); cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: 5px;
+}
+.post-copy-btn:hover { background: var(--green); color: var(--cream); border-color: var(--green); }
+
+/* Loading dots */
+.dots { display: inline-flex; gap: 4px; align-items: center; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cream); animation: dot-bounce .6s ease infinite; }
+.dot:nth-child(2) { animation-delay: .15s; }
+.dot:nth-child(3) { animation-delay: .3s; }
+@keyframes dot-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* ══════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════ */
+.newsletter {
+  background: var(--green);
+  padding: 80px 24px;
+  text-align: center;
+}
+.newsletter-inner { max-width: 560px; margin: 0 auto; }
+.newsletter-arabic { font-family: 'Amiri', serif; font-size: 24px; color: var(--gold2); direction: rtl; margin-bottom: 8px; }
+.newsletter h2 { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--cream); margin-bottom: 12px; }
+.newsletter p { font-size: 15px; color: rgba(250,246,238,.7); line-height: 1.75; margin-bottom: 32px; }
+.newsletter-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+.newsletter-input {
+  flex: 1; padding: 14px 20px;
+  border: none; border-radius: 50px 0 0 50px;
+  font-family: 'Lora', serif; font-size: 14px; color: var(--text);
+  background: var(--cream);
+  outline: none;
+}
+.newsletter-submit {
+  background: var(--gold); color: var(--green);
+  padding: 14px 28px; border: none;
+  border-radius: 0 50px 50px 0;
+  font-family: 'Lora', serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: all .2s;
+}
+.newsletter-submit:hover { background: var(--gold2); }
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+footer {
+  background: var(--charcoal);
+  padding: 60px 24px 32px;
+  position: relative; z-index: 1;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand { }
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; color: var(--cream);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.footer-brand-desc { font-size: 14px; color: rgba(250,246,238,.5); line-height: 1.8; max-width: 280px; margin-bottom: 20px; }
+.social-links { display: flex; gap: 10px; }
+.social-link {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--cream); text-decoration: none;
+  transition: all .2s;
+}
+.social-link:hover { background: var(--gold); color: var(--green); }
+.footer-col-title { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--cream); margin-bottom: 18px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: rgba(250,246,238,.5); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--gold2); }
+.footer-divider { height: 1px; background: rgba(255,255,255,.08); margin-bottom: 28px; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 13px; color: rgba(250,246,238,.35); }
+.footer-copy span { color: var(--gold2); }
+.footer-ayat {
+  font-family: 'Amiri', serif; font-size: 15px; color: rgba(250,246,238,.4);
+  direction: rtl;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 960px) {
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .blog-featured { grid-column: span 2; }
+  .store-grid { grid-template-columns: repeat(2, 1fr); }
+  .posting-layout { grid-template-columns: 1fr; }
+  .phone-preview { position: static; }
+  .about-inner { grid-template-columns: 1fr; gap: 36px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 680px) {
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-featured { grid-column: span 1; grid-template-columns: 1fr; }
+  .blog-featured .blog-card-img { height: 200px; }
+  .store-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .nav-links { display: none; }
+  .nav-ham { display: flex; }
+  .mobile-menu.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 64px; background: var(--cream); z-index: 99; padding: 32px; gap: 20px; }
+  .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); text-decoration: none; }
+  .footer-top { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-input { border-radius: 50px; }
+  .newsletter-submit { border-radius: 50px; }
+  .earnings-banner { flex-direction: column; }
+  .hero-stats { gap: 28px; }
+  .modal-header { padding: 24px 20px; }
+  .modal-body { padding: 24px 20px; }
+  .modal-title { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="geo-bg"></div>
+
+<!-- ════════════ NAVIGATION ════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-brand">
+    <span class="moon">☽</span> Sore Hening
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#blog">Artikel</a></li>
+    <li><a href="#toko">Toko Islami</a></li>
+    <li><a href="#posting">Buat Konten</a></li>
+    <li><a href="#newsletter" class="nav-cta">Bergabung</a></li>
+  </ul>
+  <button class="nav-ham" onclick="toggleMobile()">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tentang" onclick="toggleMobile()">Tentang</a>
+  <a href="#blog" onclick="toggleMobile()">Artikel</a>
+  <a href="#toko" onclick="toggleMobile()">Toko Islami</a>
+  <a href="#posting" onclick="toggleMobile()">Buat Konten</a>
+  <a href="#newsletter" onclick="toggleMobile()">Bergabung</a>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-crescent">☽</div>
+  <div class="hero-star-l">✦</div>
+
+  <div class="hero-badge">☽ &nbsp; Perjalanan Menuju Cahaya &nbsp; ☽</div>
+
+  <div class="hero-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <div class="hero-arabic-trans">Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang</div>
+
+  <h1>
+    Sore <em>Hening</em>
+  </h1>
+
+  <p class="hero-sub">
+    Ruang tenang untuk kembali mengenal Islam — dari sejarah peradaban, kisah para cendekiawan, hingga perjalanan hijrah yang penuh makna.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#blog" class="btn-primary">📖 Baca Artikel</a>
+    <a href="#toko" class="btn-outline">🛒 Toko Islami</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">120+</span>
+      <span class="hero-stat-lbl">Artikel Diterbitkan</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">48K</span>
+      <span class="hero-stat-lbl">Pembaca Setia</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">30+</span>
+      <span class="hero-stat-lbl">Produk Islami</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">5 ★</span>
+      <span class="hero-stat-lbl">Rating Pembaca</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    Scroll
+    <span></span>
+  </div>
+</section>
+
+<!-- ════════════ ABOUT STRIP ════════════ -->
+<div class="about-strip" id="tentang">
+  <div class="about-inner">
+    <div class="about-quote">
+      "Sesungguhnya dalam penciptaan langit dan bumi… terdapat tanda-tanda bagi <span>orang-orang yang berakal.</span>"
+      <div style="font-size:14px;color:rgba(250,246,238,.5);font-family:'Lora',serif;font-style:normal;margin-top:12px;font-weight:400">— QS. Ali Imran: 190</div>
+    </div>
+    <div>
+      <p class="about-text">
+        <p><strong style="color:var(--gold2)">Sore Hening</strong> lahir dari kerinduan — kerinduan akan ketenangan di tengah kebisingan dunia, dan kerinduan untuk kembali mengenal Islam yang begitu indah dan penuh hikmah.</p>
+        <p>Di sini kamu akan menemukan kisah para khalifah yang membangun peradaban, pemikiran cendekiawan Islam yang mengubah dunia, serta panduan praktis untuk hijrah yang lembut dan penuh kasih.</p>
+      </p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">📜</div>
+          <div class="pillar-text"><strong>Sejarah Islam</strong>Dari Sirah Nabawiyah hingga kejayaan Bani Abbasiyah</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🕌</div>
+          <div class="pillar-text"><strong>Cendekiawan Islam</strong>Pemikiran Ibnu Sina, Al-Ghazali, Ibnu Khaldun & lainnya</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🌙</div>
+          <div class="pillar-text"><strong>Panduan Hijrah</strong>Langkah lembut kembali ke jalan yang diridhai Allah</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🛒</div>
+          <div class="pillar-text"><strong>Toko Islami</strong>Produk pilihan untuk mendukung perjalanan spiritualmu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ BLOG ════════════ -->
+<section id="blog">
+  <div class="section-inner">
+    <div class="section-eyebrow">✦ &nbsp; Artikel Terbaru</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:48px">
+      <div>
+        <div class="section-title">Cahaya dari <em>Lembaran Sejarah</em></div>
+        <div class="section-desc" style="margin-bottom:0">Kisah-kisah yang menghidupkan kembali cinta pada Islam</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap" id="blogFilters">
+        <button class="filter-btn active" onclick="filterBlog('semua',this)">Semua</button>
+        <button class="filter-btn" onclick="filterBlog('sejarah',this)">Sejarah</button>
+        <button class="filter-btn" onclick="filterBlog('cendekiawan',this)">Cendekiawan</button>
+        <button class="filter-btn" onclick="filterBlog('hijrah',this)">Hijrah</button>
+        <button class="filter-btn" onclick="filterBlog('quran',this)">Al-Qur'an</button>
+      </div>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="blog-load-more">
+      <button class="btn-outline" onclick="loadMoreBlog()">Muat Lebih Banyak Artikel ↓</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ AFFILIATE STORE ════════════ -->
+<section id="toko">
+  <div class="section-inner">
+    <div class="section-eyebrow">✦ &nbsp; Toko Islami</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+      <div>
+        <div class="section-title">Pilihan untuk <em>Perjalananmu</em></div>
+        <div class="section-desc" style="margin-bottom:0">Produk islami pilihan dengan kualitas terbaik — setiap pembelian membantu Sore Hening terus berkarya</div>
+      </div>
+    </div>
+    <div class="store-filters" id="storeFilters">
+      <button class="filter-btn active" onclick="filterStore('semua',this)">Semua</button>
+      <button class="filter-btn" onclick="filterStore('hijab',this)">🧕 Hijab</button>
+      <button class="filter-btn" onclick="filterStore('ibadah',this)">🕌 Ibadah</button>
+      <button class="filter-btn" onclick="filterStore('buku',this)">📚 Buku</button>
+      <button class="filter-btn" onclick="filterStore('quran',this)">📖 Al-Qur'an</button>
+      <button class="filter-btn" onclick="filterStore('aksesoris',this)">📿 Aksesoris</button>
+    </div>
+    <div class="store-grid" id="storeGrid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="earnings-banner">
+      <div class="earnings-text">
+        <h3>☽ Dukung Sore Hening</h3>
+        <p>Setiap pembelian melalui link di atas mendukung perjalanan kami dalam menyebarkan konten islami yang bermanfaat. Barakallahu fiikum untuk setiap dukungan kalian.</p>
+      </div>
+      <div class="earnings-stats">
+        <div class="earn-stat"><span class="earn-stat-num">30+</span><span class="earn-stat-lbl">Produk Pilihan</span></div>
+        <div class="earn-stat"><span class="earn-stat-num">100%</span><span class="earn-stat-lbl">Terseleksi</span></div>
+        <div class="earn-stat"><span class="earn-stat-num">5%–15%</span><span class="earn-stat-lbl">Komisi Affiliate</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SOCIAL POST CREATOR ════════════ -->
+<section id="posting">
+  <div class="section-inner">
+    <div class="section-eyebrow">✦ &nbsp; Buat Konten</div>
+    <div class="section-title">Post ke <em>Instagram & TikTok</em></div>
+    <div class="section-desc">Generate caption, hashtag, dan skrip konten islami dengan AI — siap langsung copy-paste ke media sosialmu</div>
+
+    <div class="posting-layout">
+      <!-- FORM -->
+      <div>
+        <div class="post-form">
+          <div>
+            <label class="form-label">Platform Tujuan</label>
+            <div class="platform-toggle">
+              <button class="plat-toggle-btn ig active" id="btnIG" onclick="setPlatformPost('ig')">📸 Instagram</button>
+              <button class="plat-toggle-btn tt" id="btnTT" onclick="setPlatformPost('tt')">🎵 TikTok</button>
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Topik Konten</label>
+            <select class="form-select" id="postTopic">
+              <option value="sirah">📜 Sirah Nabawiyah — Kisah Nabi Muhammad ﷺ</option>
+              <option value="sahabat">⭐ Kisah Para Sahabat Nabi</option>
+              <option value="quran">📖 Tadabbur Ayat Al-Qur'an</option>
+              <option value="hijrah">🌙 Motivasi Hijrah</option>
+              <option value="cendekiawan">🔬 Cendekiawan Islam Dunia</option>
+              <option value="sejarah">🏰 Sejarah Peradaban Islam</option>
+              <option value="doa">🤲 Doa & Dzikir Harian</option>
+              <option value="akhlak">💚 Akhlak & Karakter Muslim</option>
+              <option value="ramadan">🌙 Ramadan & Ibadah</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Sub-topik Spesifik (opsional)</label>
+            <input class="form-input" id="postSubtopic" placeholder="Cth: Perang Badar, Al-Ghazali, Surah Al-Mulk..."/>
+          </div>
+          <div>
+            <label class="form-label">Gaya Konten</label>
+            <select class="form-select" id="postStyle">
+              <option value="inspiratif">✨ Inspiratif & Menyentuh Hati</option>
+              <option value="edukatif">📚 Edukatif & Informatif</option>
+              <option value="storytelling">📖 Storytelling Mendalam</option>
+              <option value="motivasi">🔥 Motivasi Hijrah</option>
+              <option value="fakta">💡 Fakta Menarik & Mengejutkan</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Link Produk Affiliate (opsional)</label>
+            <input class="form-input" id="affiliateLink" placeholder="Cth: bit.ly/quran-sore-hening"/>
+          </div>
+          <button class="gen-post-btn" id="genPostBtn" onclick="generatePost()">
+            <span id="genPostBtnText">✨ Generate Konten</span>
+          </button>
+        </div>
+
+        <!-- Output -->
+        <div class="post-output" id="postOutput">
+          <div class="post-output-section">
+            <div class="post-output-label" id="outputLabel">Caption Instagram</div>
+            <div class="post-output-text" id="outputCaption"></div>
+            <button class="post-copy-btn" onclick="copyOutput('outputCaption')">📋 Copy Caption</button>
+          </div>
+          <div class="post-output-section" id="outputHashtagSection">
+            <div class="post-output-label">Hashtag</div>
+            <div class="post-output-text" id="outputHashtags"></div>
+            <button class="post-copy-btn" onclick="copyOutput('outputHashtags')">📋 Copy Hashtag</button>
+          </div>
+          <div class="post-output-section" id="outputScriptSection" style="display:none">
+            <div class="post-output-label">Skrip Narasi (TikTok)</div>
+            <div class="post-output-text" id="outputScript"></div>
+            <button class="post-copy-btn" onclick="copyOutput('outputScript')">📋 Copy Skrip</button>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button class="post-copy-btn" onclick="copyAllOutput()" style="background:var(--green);color:var(--cream);border-color:var(--green)">📋 Copy Semua</button>
+            <button class="post-copy-btn" onclick="generatePost()">🔄 Generate Ulang</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE PREVIEW -->
+      <div class="phone-preview">
+        <div class="phone-frame-outer">
+          <div class="phone-notch"></div>
+          <div class="phone-screen-inner" id="phoneScreenPost">
+
+            <!-- Instagram Preview (default) -->
+            <div id="previewIG" class="ig-preview">
+              <div class="ig-header-bar">
+                <div class="ig-avatar-ring"><div class="ig-avatar-inner2">SH</div></div>
+                <div class="ig-post-user">sore.hening</div>
+                <div class="ig-post-more">···</div>
+              </div>
+              <div class="ig-post-image">
+                <div class="post-icon" id="previewIcon">☽</div>
+                <div class="post-text" id="previewArabic">الإسلام نور</div>
+              </div>
+              <div class="ig-post-actions">
+                <span style="font-size:20px;cursor:pointer">♡</span>
+                <span style="font-size:20px;cursor:pointer">💬</span>
+                <span style="font-size:20px;cursor:pointer">✈</span>
+                <span style="margin-left:auto;font-size:20px;cursor:pointer">🔖</span>
+              </div>
+              <div class="ig-post-likes">2,847 likes</div>
+              <div class="ig-post-caption-area"><b>sore.hening</b> <span id="previewCaption">Generate konten untuk melihat preview di sini ✨</span></div>
+              <div class="ig-hashtags-area" id="previewHashtags">#SoreHening #Islam #Hijrah #Muslim</div>
+            </div>
+
+            <!-- TikTok Preview (hidden) -->
+            <div id="previewTT" class="tt-preview" style="display:none">
+              <div class="tt-bg-img" id="ttBgIcon">🕌</div>
+              <div class="tt-overlay"></div>
+              <div class="tt-content-area">
+                <div class="tt-left-area">
+                  <div class="tt-username">@sore.hening</div>
+                  <div class="tt-caption-text" id="ttPreviewCaption">Generate konten untuk preview TikTok ✨</div>
+                  <div class="tt-music-bar">
+                    <span class="tt-music-spin">♫</span>
+                    <span>Murottal — Original Audio</span>
+                  </div>
+                </div>
+                <div class="tt-right-side">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--green);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--cream);font-weight:700">SH</div>
+                  <div class="tt-icon-col"><div class="icon">❤️</div><div>84K</div></div>
+                  <div class="tt-icon-col"><div class="icon">💬</div><div>1.2K</div></div>
+                  <div class="tt-icon-col"><div class="icon">🔖</div><div>12K</div></div>
+                  <div class="tt-icon-col"><div class="icon">↗</div><div>Share</div></div>
+                </div>
+              </div>
+              <div class="tt-progress-bar"><div class="tt-progress-fill"></div></div>
+            </div>
+
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text3)">Live Preview · Otomatis update</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ NEWSLETTER ════════════ -->
+<div class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="ornament">☽</div>
+    <div class="newsletter-arabic">اشترك في نشرتنا الإخبارية</div>
+    <h2>Bergabung dengan Komunitas</h2>
+    <p>Dapatkan artikel islami, jadwal kajian online, dan rekomendasi produk pilihan langsung di emailmu setiap minggu.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="emailmu@gmail.com" id="emailInput"/>
+      <button class="newsletter-submit" onclick="subscribe()">Bergabung ☽</button>
+    </div>
+    <div style="margin-top:14px;font-size:12px;color:rgba(250,246,238,.4)">Tanpa spam, bisa unsubscribe kapan saja · Lebih dari 48K subscriber</div>
+  </div>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">☽ Sore Hening</div>
+        <p class="footer-brand-desc">Ruang tenang untuk kembali mengenal keindahan Islam — dari sejarah hingga perjalanan hijrah.</p>
+        <div class="social-links">
+          <a class="social-link" href="#" title="Instagram">📸</a>
+          <a class="social-link" href="#" title="TikTok">🎵</a>
+          <a class="social-link" href="#" title="YouTube">▶</a>
+          <a class="social-link" href="#" title="Telegram">✈</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigasi</div>
+        <ul class="footer-links">
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#blog">Artikel Islami</a></li>
+          <li><a href="#toko">Toko Islami</a></li>
+          <li><a href="#posting">Buat Konten</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Topik</div>
+        <ul class="footer-links">
+          <li><a href="#">Sirah Nabawiyah</a></li>
+          <li><a href="#">Cendekiawan Islam</a></li>
+          <li><a href="#">Panduan Hijrah</a></li>
+          <li><a href="#">Tadabbur Qur'an</a></li>
+          <li><a href="#">Kisah Sahabat</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Produk</div>
+        <ul class="footer-links">
+          <li><a href="#">Hijab & Busana</a></li>
+          <li><a href="#">Al-Qur'an</a></li>
+          <li><a href="#">Buku Islam</a></li>
+          <li><a href="#">Perlengkapan Sholat</a></li>
+          <li><a href="#">Aksesoris Muslim</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>Sore Hening</span> · Dibuat dengan ❤️ untuk umat Muslim Indonesia</div>
+      <div class="footer-ayat">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════ BLOG MODAL ════════════ -->
+<div class="modal-overlay" id="blogModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-tag" id="modalTag">Sejarah</div>
+      <div class="modal-title" id="modalTitle">Judul Artikel</div>
+      <div class="modal-meta" id="modalMeta">Sore Hening · 8 menit baca</div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ════════════ JAVASCRIPT ════════════ -->
+<script>
+// ─── DATA ───
+const BLOGS = [
+  {
+    id:1, cat:'sejarah', tag:'Sejarah', emoji:'🕌', featured:true,
+    title:'Kejayaan Bani Abbasiyah — Ketika Islam Menjadi Mercusuar Peradaban Dunia',
+    excerpt:'Di balik dinding Baghdad yang megah, ribuan sarjana Muslim mengubah wajah ilmu pengetahuan dunia. Inilah kisah abad keemasan yang belum banyak diceritakan...',
+    date:'24 Des 2024', read:'12 menit',
+    bg:'linear-gradient(135deg,#1B4332,#2D6A4F)',
+    content:`
+      <div class="arabic-verse">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ</div>
+      <div class="verse-trans">"Sesungguhnya Allah tidak mengubah keadaan suatu kaum, sehingga mereka mengubah keadaan yang ada pada diri mereka sendiri." — QS. Ar-Ra'd: 11</div>
+      <p>Bayangkan sebuah kota di abad ke-8 Masehi — Baghdad. Di sini, para dokter Muslim sedang merumuskan teori kedokteran yang akan digunakan Eropa selama 600 tahun ke depan. Matematikawan mengembangkan aljabar. Astronom membuat peta bintang dengan akurasi luar biasa. Filsuf menerjemahkan dan mengembangkan pemikiran Yunani, Persia, dan India.</p>
+      <h3>Bayt al-Hikmah — Rumah Kebijaksanaan</h3>
+      <p>Khalifah Harun al-Rasyid mendirikan Bayt al-Hikmah (Rumah Kebijaksanaan) di Baghdad, dan putranya Al-Ma'mun mengembangkannya menjadi pusat intelektual terbesar dunia. Di sinilah ribuan manuskrip dari seluruh penjuru dunia diterjemahkan ke dalam bahasa Arab.</p>
+      <blockquote>"Tinta para ulama lebih mulia daripada darah para syuhada." — Hadis Nabi Muhammad ﷺ</blockquote>
+      <p>Para ilmuwan seperti Al-Khawarizmi (bapak aljabar), Ibnu Sina (bapak kedokteran), Al-Biruni (bapak antropologi), dan Al-Battani (astronom) semua berkarya dalam naungan kekhalifahan Abbasiyah. Mereka tidak hanya mewarisi ilmu — mereka menciptakan ilmu baru.</p>
+      <h3>Warisan yang Hidup Hingga Kini</h3>
+      <p>Kata-kata dalam bahasa Indonesia dan dunia yang berasal dari Arab sangat banyak: aljabar (al-jabr), alkohol (al-kuhul), algoritma (dari nama Al-Khawarizmi), zenith, nadir, dan ratusan lainnya — semuanya warisan era keemasan Islam.</p>
+      <p>Sejarah ini bukan sekadar masa lalu. Ini adalah bukti bahwa Islam dan ilmu pengetahuan adalah dua hal yang tidak hanya sejalan, tetapi saling menguatkan. Ini adalah inspirasi bagi kita hari ini untuk kembali mencintai ilmu — sebagaimana diperintahkan Allah dan Rasul-Nya.</p>
+    `
+  },
+  {
+    id:2, cat:'cendekiawan', tag:'Cendekiawan', emoji:'🔬',
+    title:'Ibnu Sina: Dokter Agung yang Menulis Tentang Jiwa dan Raga',
+    excerpt:'Di usia 18 tahun, ia sudah menyembuhkan sultan yang sakit keras. Di usia 21, ia menulis ensiklopedia medis yang dipakai Eropa selama 6 abad. Siapakah Ibnu Sina?',
+    date:'19 Des 2024', read:'10 menit',
+    bg:'linear-gradient(135deg,#2D6A4F,#52B788)',
+    content:`
+      <div class="arabic-verse">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div>
+      <div class="verse-trans">"Bacalah dengan nama Tuhanmu yang menciptakan." — QS. Al-'Alaq: 1</div>
+      <p>Abu Ali al-Husayn ibn Sina, atau dikenal di Barat sebagai Avicenna, lahir pada tahun 980 Masehi di Bukhara (kini Uzbekistan). Kisah hidupnya seperti kisah dalam dongeng — kecuali bahwa semua ini nyata, dan dampaknya terasa hingga hari ini.</p>
+      <h3>Bocah Ajaib dari Bukhara</h3>
+      <p>Ibnu Sina menghafal Al-Qur'an pada usia 10 tahun. Di usia 16, ia sudah mempelajari semua ilmu yang tersedia di zamannya dan mulai berfokus pada kedokteran. Di usia 18, ia menyembuhkan Sultan Nuh II bin Mansur yang sedang sakit keras — sesuatu yang gagal dilakukan oleh dokter-dokter terbaik kerajaan.</p>
+      <blockquote>"Sumber pengetahuan adalah akal, sumber akal adalah Tuhan." — Ibnu Sina</blockquote>
+      <p>Karya terbesar Ibnu Sina adalah Al-Qanun fi al-Tibb (Canon of Medicine) — sebuah ensiklopedia medis dalam 5 jilid yang menjadi buku teks kedokteran standar di universitas-universitas Eropa hingga abad ke-17. Ia membahas anatomi, farmakologi, psikologi, dan bahkan pengaruh lingkungan terhadap kesehatan.</p>
+      <h3>Tentang Jiwa dan Tuhan</h3>
+      <p>Namun Ibnu Sina bukan hanya dokter. Ia adalah filsuf yang dalam. Dalam karya-karya filosofinya, ia mengembangkan argumen ontologis untuk eksistensi Tuhan dan menulis secara mendalam tentang hakikat jiwa manusia. Ia percaya bahwa akal dan iman tidak bertentangan — keduanya adalah jalan menuju kebenaran yang sama.</p>
+    `
+  },
+  {
+    id:3, cat:'hijrah', tag:'Hijrah', emoji:'🌙',
+    title:'Lima Langkah Lembut Menuju Hijrah yang Istiqomah',
+    excerpt:'Hijrah bukan soal berubah dalam semalam. Ia adalah perjalanan yang panjang, penuh kasih, dan dimulai dengan satu langkah kecil yang ikhlas...',
+    date:'15 Des 2024', read:'7 menit',
+    bg:'linear-gradient(135deg,#B5833A,#D4A853)',
+    content:`
+      <div class="arabic-verse">وَمَن يُهَاجِرْ فِي سَبِيلِ اللَّهِ يَجِدْ فِي الْأَرْضِ مُرَاغَمًا كَثِيرًا وَسَعَةً</div>
+      <div class="verse-trans">"Barangsiapa berhijrah di jalan Allah, niscaya mereka mendapati di muka bumi ini tempat hijrah yang luas dan rezeki yang banyak." — QS. An-Nisa: 100</div>
+      <p>Banyak orang yang rindu untuk kembali kepada Islam. Namun seringkali mereka terjebak dalam pertanyaan: "Dari mana harus mulai?" Kabar baiknya: Allah tidak menuntut kita sempurna dalam semalam. Islam adalah agama kemudahan.</p>
+      <h3>1. Mulai dengan Niat yang Bersih</h3>
+      <p>Niat adalah fondasi segalanya. "Innamal a'malu bin-niyyat" — sesungguhnya setiap amalan tergantung pada niatnya. Tidak perlu niat yang rumit. Cukup: "Ya Allah, aku ingin kembali kepada-Mu. Bantulah aku."</p>
+      <h3>2. Jaga Satu Ibadah Dulu</h3>
+      <p>Jangan mencoba mengubah semua sekaligus. Pilihlah satu ibadah dan istiqomah di sana. Mungkin itu sholat Subuh. Mungkin itu membaca satu halaman Al-Qur'an sebelum tidur. Konsistensi dalam yang kecil lebih dicintai Allah dari yang besar tapi tak bertahan.</p>
+      <blockquote>"Amalan yang paling dicintai Allah adalah yang paling konsisten, meskipun sedikit." — HR. Bukhari & Muslim</blockquote>
+      <h3>3. Temukan Komunitas yang Suportif</h3>
+      <p>Manusia adalah makhluk sosial. Lingkungan sangat mempengaruhi perjalanan kita. Carilah satu atau dua orang yang bisa menjadi teman hijrah — bukan yang menghakimi, tetapi yang saling menguatkan.</p>
+      <h3>4. Baca Sirah Nabawiyah</h3>
+      <p>Kisah hidup Nabi Muhammad ﷺ adalah obat terbaik untuk hati yang goyah. Betapa banyak kesedihan, ujian, dan rintangan yang Beliau hadapi — namun Beliau tetap kokoh dan penuh kasih. Membaca sirah akan membuat kita jatuh cinta kembali kepada Islam.</p>
+      <h3>5. Sabar dan Maafkan Diri Sendiri</h3>
+      <p>Kamu tidak sempurna. Aku tidak sempurna. Kita semua dalam proses. Yang terpenting adalah kita tidak berhenti berjalan. Setiap kali jatuh, bangkit lagi. Allah Maha Pengampun dan Maha Penyayang.</p>
+    `
+  },
+  {
+    id:4, cat:'quran', tag:'Al-Qur\'an', emoji:'📖',
+    title:'Tadabbur Surah Al-Mulk: Mengapa Kita Harus Membacanya Setiap Malam',
+    excerpt:'Rasulullah ﷺ tidak tidur sebelum membaca Surah Al-Mulk. Apa yang begitu istimewa dari 30 ayat ini hingga bisa menjadi penolong di alam kubur?',
+    date:'10 Des 2024', read:'8 menit',
+    bg:'linear-gradient(135deg,#1B4332,#0d3b27)',
+    content:`
+      <div class="arabic-verse">تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+      <div class="verse-trans">"Maha Suci Allah yang di tangan-Nya segala kerajaan, dan Dia Mahakuasa atas segala sesuatu." — QS. Al-Mulk: 1</div>
+      <p>Ada sebuah hadis yang diriwayatkan oleh Ibnu Mas'ud yang membuat hati bergetar: Surah Al-Mulk akan datang pada Hari Kiamat untuk membela orang yang selalu membacanya, hingga mengeluarkannya dari azab kubur.</p>
+      <h3>Nama-nama Surah Ini</h3>
+      <p>Surah Al-Mulk memiliki banyak nama: Al-Mulk (Kerajaan), Al-Mani'ah (Pencegah), Al-Waqiyah (Pelindung), dan Al-Munjiyah (Penyelamat). Setiap nama mencerminkan keistimewaan yang berbeda dari surah yang mulia ini.</p>
+      <h3>Tema Besar: Kematian sebagai Ujian</h3>
+      <p>Surah ini dibuka dengan pernyataan bahwa Allah menciptakan mati dan hidup untuk menguji siapa di antara kita yang terbaik amalnya. Bukan terbanyak — tapi terbaik. Ini mengajarkan kualitas, bukan kuantitas dalam beribadah.</p>
+      <blockquote>"Tidak ada yang sia-sia dari kebaikan sekecil apapun." — QS. Az-Zalzalah: 7</blockquote>
+      <p>Mulailah dengan membaca Surah Al-Mulk setiap malam. Meskipun belum fasih, meskipun masih terbata-bata — mulailah. Allah melihat usaha dan niatmu, bukan sempurnanya bacaanmu.</p>
+    `
+  },
+  {
+    id:5, cat:'cendekiawan', tag:'Cendekiawan', emoji:'🧮',
+    title:'Al-Khawarizmi: Pria yang Namanya Menjadi "Algoritma"',
+    excerpt:'Tanpa Al-Khawarizmi, tidak ada komputer modern. Tidak ada kalkulator. Bahkan tidak ada sistem bilangan yang kita pakai sehari-hari. Siapakah beliau?',
+    date:'5 Des 2024', read:'9 menit',
+    bg:'linear-gradient(135deg,#5d3a1a,#7d4c1a)',
+    content:`
+      <p>Muhammad ibn Musa al-Khawarizmi adalah seorang matematikawan dan ilmuwan Muslim yang hidup di Baghdad pada abad ke-9. Namanya diabadikan dalam dua kata yang kita gunakan setiap hari: "algoritma" (dari latinisasi namanya, Algoritmi) dan "aljabar" (dari judul bukunya, Al-Kitab al-Mukhtasar fi Hisab al-Jabr).</p>
+      <h3>Bapak Aljabar</h3>
+      <p>Buku Al-Jabr wa al-Muqabala (Ringkasan Perhitungan dengan Pemulihan dan Pengurangan) yang ditulis Al-Khawarizmi adalah fondasi aljabar modern. Ia memperkenalkan metode sistematis untuk memecahkan persamaan linear dan kuadrat.</p>
+      <blockquote>"Ilmu adalah cahaya, dan kebodohan adalah kegelapan." — Pepatah Arab</blockquote>
+      <p>Al-Khawarizmi juga memperkenalkan sistem bilangan Hindu-Arab ke dunia Islam dan kemudian ke Eropa — inilah angka 0, 1, 2, 3... yang kita gunakan hingga sekarang. Sebelum itu, orang Eropa menggunakan angka Romawi yang sangat rumit untuk perhitungan.</p>
+    `
+  },
+  {
+    id:6, cat:'sejarah', tag:'Sejarah', emoji:'⚔️',
+    title:'Perang Badar: 313 Orang yang Mengubah Sejarah Umat Manusia',
+    excerpt:'Mereka hanya 313 jiwa, melawan 1.000 pasukan musuh yang lengkap bersenjata. Namun dengan izin Allah, hasil perang ini mengubah jalannya peradaban...',
+    date:'1 Des 2024', read:'11 menit',
+    bg:'linear-gradient(135deg,#7d1a1a,#a52020)',
+    content:`
+      <div class="arabic-verse">وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ وَأَنتُمْ أَذِلَّةٌ</div>
+      <div class="verse-trans">"Sungguh, Allah telah menolong kamu dalam Perang Badar, padahal kamu dalam keadaan lemah." — QS. Ali Imran: 123</div>
+      <p>Pada 17 Ramadan tahun ke-2 Hijriyah (624 M), di sebuah lembah bernama Badar, terjadi pertempuran yang akan mengubah jalannya sejarah Islam dan dunia.</p>
+      <h3>Ketidakseimbangan yang Nyata</h3>
+      <p>Kaum Muslimin: 313 orang, 2 kuda, 70 unta. Kaum Quraisy: lebih dari 1.000 pejuang, 100 kuda, 700 unta, lengkap bersenjata. Dari sisi logika militer, ini adalah kekalahan yang sudah bisa diprediksi.</p>
+      <p>Namun Nabi Muhammad ﷺ tidak berdoa untuk menghitung kekuatan musuh. Beliau berdoa dengan penuh keyakinan: "Ya Allah, jika Engkau binasakan pasukan ini, Engkau tidak akan lagi disembah di muka bumi."</p>
+      <blockquote>"Cukuplah Allah sebagai Pemelihara kami, dan Dia sebaik-baik pelindung." — QS. Ali Imran: 173</blockquote>
+      <p>Hasil perang Badar bukan sekadar kemenangan militer. Ia meneguhkan keimanan kaum Muslimin, membuktikan bahwa pertolongan Allah nyata, dan menjadi titik balik dalam dakwah Islam di Jazirah Arabia.</p>
+    `
+  },
+];
+
+const PRODUCTS = [
+  { id:1, cat:'hijab', emoji:'🧕', bg:'linear-gradient(135deg,#e8d5c4,#d4b896)', name:'Hijab Voal Premium Sore Hening', cat_label:'Hijab', desc:'Bahan voal premium, anti kusut, 30+ pilihan warna halus', price:'Rp 89.000', old_price:'Rp 120.000', badge:'best', link:'#', wishlist:false },
+  { id:2, cat:'ibadah', emoji:'🙏', bg:'linear-gradient(135deg,#1B4332,#2D6A4F)', name:'Sajadah Eksklusif Motif Geometri Islam', cat_label:'Ibadah', desc:'Tebal, lembut, motif geometri Islam yang indah', price:'Rp 145.000', old_price:'', badge:'', link:'#', wishlist:false },
+  { id:3, cat:'quran', emoji:'📖', bg:'linear-gradient(135deg,#8B4513,#A0522D)', name:'Al-Qur\'an Terjemah Tafsir Perkata', cat_label:'Al-Qur\'an', desc:'Dilengkapi asbabun nuzul, tajwid berwarna, terjemah kata per kata', price:'Rp 215.000', old_price:'Rp 280.000', badge:'best', link:'#', wishlist:false },
+  { id:4, cat:'buku', emoji:'📚', bg:'linear-gradient(135deg,#2c3e50,#3d4f62)', name:'Sirah Nabawiyah Ibnu Hisyam (Lengkap)', cat_label:'Buku Sirah', desc:'Kisah lengkap kehidupan Nabi ﷺ, terjemahan terpercaya', price:'Rp 185.000', old_price:'', badge:'new', link:'#', wishlist:false },
+  { id:5, cat:'aksesoris', emoji:'📿', bg:'linear-gradient(135deg,#B5833A,#D4A853)', name:'Tasbih Kayu Cendana 99 Butir', cat_label:'Aksesoris', desc:'Kayu cendana asli, harum alami, butiran halus & nyaman', price:'Rp 75.000', old_price:'', badge:'', link:'#', wishlist:false },
+  { id:6, cat:'buku', emoji:'📖', bg:'linear-gradient(135deg,#1a237e,#283593)', name:'Fiqih Wanita Lengkap — Dr. Yusuf Qardhawi', cat_label:'Buku Islam', desc:'Panduan fiqih praktis untuk muslimah modern', price:'Rp 130.000', old_price:'Rp 165.000', badge:'', link:'#', wishlist:false },
+  { id:7, cat:'ibadah', emoji:'🕌', bg:'linear-gradient(135deg,#1B4332,#52B788)', name:'Mukena Jumbo Premium Bordir', cat_label:'Ibadah', desc:'Jumbo, nyaman untuk semua ukuran, bordir indah', price:'Rp 195.000', old_price:'', badge:'new', link:'#', wishlist:false },
+  { id:8, cat:'hijab', emoji:'🎀', bg:'linear-gradient(135deg,#c9847a,#e8b4ae)', name:'Set Hijab Segi Empat Daily 5 Pcs', cat_label:'Hijab', desc:'Paket hemat hijab daily, bahan adem dan anti menerawang', price:'Rp 175.000', old_price:'Rp 250.000', badge:'best', link:'#', wishlist:false },
+];
+
+// ─── NAV ───
+function toggleMobile(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ─── BLOG ───
+let currentBlogFilter='semua';
+let shownBlogsCount = 4;
+
+function renderBlogs(filter='semua', count=4){
+  const grid=document.getElementById('blogGrid');
+  let filtered=filter==='semua'?BLOGS:BLOGS.filter(b=>b.cat===filter);
+  filtered=filtered.slice(0,count);
+  if(filtered.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text3);font-size:16px">Belum ada artikel di kategori ini</div>`;
+    return;
+  }
+  grid.innerHTML=filtered.map(b=>{
+    const isFeat=b.featured&&filter==='semua'&&count>=4;
+    return `<div class="blog-card${isFeat?' blog-featured':''}" onclick="openBlog(${b.id})">
+      <div class="blog-card-img">
+        <div class="blog-card-img-inner" style="background:${b.bg}">${b.emoji}</div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-tag">${b.tag}</span>
+        <div class="blog-card-title">${b.title}</div>
+        <div class="blog-card-excerpt">${b.excerpt}</div>
+        <div class="blog-meta">
+          <span>${b.date}</span>
+          <span class="blog-meta-dot"></span>
+          <span>${b.read} baca</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterBlog(cat,btn){
+  currentBlogFilter=cat;
+  shownBlogsCount=4;
+  document.querySelectorAll('#blogFilters .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBlogs(cat,shownBlogsCount);
+}
+
+function loadMoreBlog(){
+  shownBlogsCount+=3;
+  renderBlogs(currentBlogFilter,shownBlogsCount);
+}
+
+function openBlog(id){
+  const b=BLOGS.find(x=>x.id===id);
+  if(!b)return;
+  document.getElementById('modalTag').textContent=b.tag;
+  document.getElementById('modalTitle').textContent=b.title;
+  document.getElementById('modalMeta').textContent=`Sore Hening · ${b.read} membaca · ${b.date}`;
+  document.getElementById('modalBody').innerHTML=b.content;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('blogModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('blogModal').addEventListener('click',function(e){
+  if(e.target===this) closeModal();
+});
+
+// ─── STORE ───
+function renderStore(filter='semua'){
+  const grid=document.getElementById('storeGrid');
+  const filtered=filter==='semua'?PRODUCTS:PRODUCTS.filter(p=>p.cat===filter);
+  grid.innerHTML=filtered.map(p=>`
+    <div class="product-card" id="prod-${p.id}">
+      <div class="product-img" style="background:${p.bg}">
+        <span style="font-size:52px">${p.emoji}</span>
+        ${p.badge==='new'?'<div class="product-badge-new">Baru</div>':''}
+        ${p.badge==='best'?'<div class="product-badge-best">Terlaris</div>':''}
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.cat_label}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-price">${p.price}${p.old_price?`<small>${p.old_price}</small>`:''}
+        </div>
+        <div class="product-actions">
+          <a class="product-affiliate-btn" href="${p.link}" onclick="trackAffiliate(${p.id},event)">
+            🛒 Beli Sekarang
+          </a>
+          <button class="product-wishlist" id="wish-${p.id}" onclick="toggleWishlist(${p.id})">♡</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterStore(cat,btn){
+  document.querySelectorAll('#storeFilters .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderStore(cat);
+}
+
+function trackAffiliate(id,e){
+  console.log('Affiliate click, product:',id);
+  // Track analytics here
+}
+
+function toggleWishlist(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p)return;
+  p.wishlist=!p.wishlist;
+  const btn=document.getElementById('wish-'+id);
+  if(btn) btn.textContent=p.wishlist?'❤️':'♡';
+}
+
+// ─── POST CREATOR ───
+let currentPlatformPost='ig';
+
+function setPlatformPost(p){
+  currentPlatformPost=p;
+  document.getElementById('btnIG').classList.toggle('active',p==='ig');
+  document.getElementById('btnIG').classList.toggle('ig',p==='ig');
+  document.getElementById('btnTT').classList.toggle('active',p==='tt');
+  document.getElementById('btnTT').classList.toggle('tt',p==='tt');
+  document.getElementById('previewIG').style.display=p==='ig'?'block':'none';
+  document.getElementById('previewTT').style.display=p==='tt'?'flex':'none';
+  document.getElementById('outputLabel').textContent=p==='ig'?'Caption Instagram':'Caption TikTok';
+  document.getElementById('outputScriptSection').style.display=p==='tt'?'block':'none';
+}
+
+const TOPIC_ICONS = {
+  sirah:'🕌', sahabat:'⭐', quran:'📖', hijrah:'🌙',
+  cendekiawan:'🔬', sejarah:'🏰', doa:'🤲', akhlak:'💚', ramadan:'🌙'
+};
+const TOPIC_ARABIC = {
+  sirah:'سيرة النبي ﷺ', sahabat:'أصحاب النبي', quran:'كتاب الله',
+  hijrah:'الهجرة إلى الله', cendekiawan:'علماء الإسلام', sejarah:'حضارة الإسلام',
+  doa:'الدعاء والذكر', akhlak:'الأخلاق الحسنة', ramadan:'رمضان كريم'
+};
+
+async function generatePost(){
+  const topic=document.getElementById('postTopic').value;
+  const subtopic=document.getElementById('postSubtopic').value.trim();
+  const style=document.getElementById('postStyle').value;
+  const affLink=document.getElementById('affiliateLink').value.trim();
+  const plat=currentPlatformPost;
+
+  const topicLabels={
+    sirah:'Sirah Nabawiyah (kisah hidup Nabi Muhammad ﷺ)',
+    sahabat:'Kisah Para Sahabat Nabi',
+    quran:'Tadabbur Ayat Al-Qur\'an',
+    hijrah:'Motivasi Hijrah — kembali kepada Allah',
+    cendekiawan:'Cendekiawan Islam Dunia',
+    sejarah:'Sejarah Peradaban Islam',
+    doa:'Doa & Dzikir Harian',
+    akhlak:'Akhlak & Karakter Muslim',
+    ramadan:'Ibadah & Amalan Ramadan',
+  };
+  const styleLabels={
+    inspiratif:'sangat inspiratif dan menyentuh hati, penuh kelembutan',
+    edukatif:'edukatif, informatif, dengan fakta akurat',
+    storytelling:'storytelling mendalam yang membawa pembaca masuk ke dalam kisah',
+    motivasi:'memotivasi pembaca untuk hijrah dan kembali kepada Allah',
+    fakta:'penuh fakta menarik dan mengejutkan yang jarang diketahui',
+  };
+
+  const btn=document.getElementById('genPostBtn');
+  btn.disabled=true;
+  btn.innerHTML=`<span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>`;
+
+  // Update preview icon
+  document.getElementById('previewIcon').textContent=TOPIC_ICONS[topic]||'☽';
+  document.getElementById('ttBgIcon').textContent=TOPIC_ICONS[topic]||'🕌';
+  document.getElementById('previewArabic').textContent=TOPIC_ARABIC[topic]||'الإسلام نور';
+
+  const isIG=plat==='ig';
+  const prompt=`Kamu adalah penulis konten islami untuk brand "Sore Hening" — sebuah platform islami yang tenang, elegan, dan penuh hikmah. Target audience: muslimah/muslim Indonesia yang ingin hijrah atau kembali mengenal Islam.
+
+Buat konten untuk ${isIG?'Instagram':'TikTok'} dengan detail berikut:
+- Topik: ${topicLabels[topic]||topic}
+- Sub-topik: ${subtopic||'bebas, pilihkan yang paling menarik'}
+- Gaya: ${styleLabels[style]||style}
+${affLink?`- Sertakan link produk: ${affLink}`:''}
+- Nada: hangat, tidak menghakimi, penuh kasih seperti kakak/sahabat
+
+Balas HANYA dalam format JSON:
+{
+  "caption": "${isIG?'caption Instagram 150-200 kata, gunakan emoji secukupnya, bisa ada ayat pendek':'caption TikTok 80-120 kata, singkat tapi kuat dan langsung ke hati'}",
+  "hashtags": "20 hashtag relevan dalam satu baris dengan spasi",
+  "script": "${isIG?'kosongkan':'narasi TikTok 30-60 detik, dibuka dengan hook kuat, 120-150 kata'}",
+  "preview_text": "ringkasan 15 kata untuk preview"
+}
+
+Gunakan Bahasa Indonesia yang hangat dan autentik. Boleh sertakan satu ayat Al-Qur'an atau hadis yang relevan dalam caption.`;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1200,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content?.map(i=>i.text||'').join('')||'';
+    const clean=raw.replace(/```json|```/g,'').trim();
+    let sc;
+    try{ sc=JSON.parse(clean); }
+    catch(e){ const m=clean.match(/\{[\s\S]*\}/); if(m) sc=JSON.parse(m[0]); else throw e; }
+
+    // Display output
+    document.getElementById('outputCaption').textContent=sc.caption||'';
+    document.getElementById('outputHashtags').textContent=sc.hashtags||'';
+    if(sc.script && !isIG) document.getElementById('outputScript').textContent=sc.script;
+    document.getElementById('outputScriptSection').style.display=(!isIG&&sc.script)?'block':'none';
+    document.getElementById('postOutput').classList.add('show');
+
+    // Update preview
+    const prev=sc.preview_text||sc.caption?.slice(0,80)||'';
+    document.getElementById('previewCaption').textContent=sc.caption?.slice(0,120)+'...'||'';
+    document.getElementById('previewHashtags').textContent=sc.hashtags?.split(' ').slice(0,6).join(' ')||'';
+    document.getElementById('ttPreviewCaption').textContent=sc.caption?.slice(0,100)+'...'||'';
+
+  }catch(err){
+    // Fallback content
+    const fallbackCaption=`${TOPIC_ICONS[topic]} ${topicLabels[topic]||'Konten Islami'}\n\nHai, Sobat Sore Hening ✨\n\nAda yang bilang, perjalanan menuju Allah tidak pernah terlambat. Setiap langkah kecil yang kita ambil, sekecil apapun, sangat berarti di sisi-Nya.\n\n"Dan barangsiapa yang bertawakal kepada Allah, maka Dia akan mencukupkan keperluannya." — QS. At-Thalaq: 3\n\nSemoga hari ini kita semakin dekat dengan-Nya. 🌙\n\n${affLink?`Link produk di bio ya → ${affLink}`:''}`;
+    document.getElementById('outputCaption').textContent=fallbackCaption;
+    document.getElementById('outputHashtags').textContent='#SoreHening #Islam #Muslim #Hijrah #SejarahIslam #MuslimIndonesia #KontenIslami #QuranQuotes #KisahIslam #BudayaMuslim';
+    document.getElementById('postOutput').classList.add('show');
+    document.getElementById('previewCaption').textContent=fallbackCaption.slice(0,120)+'...';
+    document.getElementById('ttPreviewCaption').textContent=fallbackCaption.slice(0,100)+'...';
+  } finally {
+    btn.disabled=false;
+    btn.innerHTML='<span id="genPostBtnText">✨ Generate Konten</span>';
+  }
+}
+
+function copyOutput(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  navigator.clipboard.writeText(el.textContent).catch(()=>{});
+  const btn=event.target;
+  const orig=btn.textContent;
+  btn.textContent='✅ Tersalin!';
+  setTimeout(()=>btn.textContent=orig,2000);
+}
+
+function copyAllOutput(){
+  const cap=document.getElementById('outputCaption').textContent;
+  const tags=document.getElementById('outputHashtags').textContent;
+  const scr=document.getElementById('outputScript').textContent;
+  const full=[cap,'\n\n'+tags,scr?'\n\n---\nSkrip TikTok:\n'+scr:''].join('');
+  navigator.clipboard.writeText(full).catch(()=>{});
+  const btn=event.target;
+  btn.textContent='✅ Semua Tersalin!';
+  setTimeout(()=>btn.textContent='📋 Copy Semua',2000);
+}
+
+function subscribe(){
+  const email=document.getElementById('emailInput').value.trim();
+  if(!email||!email.includes('@')){ alert('Masukkan alamat email yang valid ya!'); return; }
+  document.getElementById('emailInput').value='';
+  alert('Barakallahu fiikum! '+email+' telah bergabung dengan komunitas Sore Hening ☽');
+}
+
+// ─── INIT ───
+renderBlogs('semua',4);
+renderStore('semua');
+
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  if(window.scrollY>40){
+    nav.style.boxShadow='0 4px 30px rgba(27,67,50,.15)';
+  }else{
+    nav.style.boxShadow='0 2px 20px rgba(27,67,50,.10)';
+  }
+});
+</script>
+</body>
+</html>
