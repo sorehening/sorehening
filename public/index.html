@@ -452,9 +452,8 @@ section {
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px var(--shadow2); }
 .product-img {
   height: 170px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 52px;
   position: relative; overflow: hidden;
+  background: var(--cream2);
 }
 .product-badge-new {
   position: absolute; top: 10px; left: 10px;
@@ -788,7 +787,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#tentang">Tentang</a></li>
     <li><a href="#blog">Artikel</a></li>
-    <li><a href="#toko">Toko Islami</a></li>
+    <li><a href="#toko">Spill Barang</a></li>
     <li><a href="#posting">Buat Konten</a></li>
     <li><a href="#newsletter" class="nav-cta">Bergabung</a></li>
   </ul>
@@ -798,7 +797,7 @@ footer {
 <div class="mobile-menu" id="mobileMenu">
   <a href="#tentang" onclick="toggleMobile()">Tentang</a>
   <a href="#blog" onclick="toggleMobile()">Artikel</a>
-  <a href="#toko" onclick="toggleMobile()">Toko Islami</a>
+  <a href="#toko" onclick="toggleMobile()">Spill Barang</a>
   <a href="#posting" onclick="toggleMobile()">Buat Konten</a>
   <a href="#newsletter" onclick="toggleMobile()">Bergabung</a>
 </div>
@@ -823,7 +822,7 @@ footer {
 
   <div class="hero-btns">
     <a href="#blog" class="btn-primary">📖 Baca Artikel</a>
-    <a href="#toko" class="btn-outline">🛒 Toko Islami</a>
+    <a href="#toko" class="btn-outline">🛒 Spill Barang</a>
   </div>
 
   <div class="hero-stats">
@@ -1283,14 +1282,20 @@ const BLOGS = [
 ];
 
 const PRODUCTS = [
-  { id:1, cat:'hijab', emoji:'🧕', bg:'linear-gradient(135deg,#e8d5c4,#d4b896)', name:'Hijab Voal Premium Sore Hening', cat_label:'Hijab', desc:'Bahan voal premium, anti kusut, 30+ pilihan warna halus', price:'Rp 89.000', old_price:'Rp 120.000', badge:'best', link:'#', wishlist:false },
-  { id:2, cat:'ibadah', emoji:'🙏', bg:'linear-gradient(135deg,#1B4332,#2D6A4F)', name:'Sajadah Eksklusif Motif Geometri Islam', cat_label:'Ibadah', desc:'Tebal, lembut, motif geometri Islam yang indah', price:'Rp 145.000', old_price:'', badge:'', link:'#', wishlist:false },
-  { id:3, cat:'quran', emoji:'📖', bg:'linear-gradient(135deg,#8B4513,#A0522D)', name:'Al-Qur\'an Terjemah Tafsir Perkata', cat_label:'Al-Qur\'an', desc:'Dilengkapi asbabun nuzul, tajwid berwarna, terjemah kata per kata', price:'Rp 215.000', old_price:'Rp 280.000', badge:'best', link:'#', wishlist:false },
-  { id:4, cat:'buku', emoji:'📚', bg:'linear-gradient(135deg,#2c3e50,#3d4f62)', name:'Sirah Nabawiyah Ibnu Hisyam (Lengkap)', cat_label:'Buku Sirah', desc:'Kisah lengkap kehidupan Nabi ﷺ, terjemahan terpercaya', price:'Rp 185.000', old_price:'', badge:'new', link:'#', wishlist:false },
-  { id:5, cat:'aksesoris', emoji:'📿', bg:'linear-gradient(135deg,#B5833A,#D4A853)', name:'Tasbih Kayu Cendana 99 Butir', cat_label:'Aksesoris', desc:'Kayu cendana asli, harum alami, butiran halus & nyaman', price:'Rp 75.000', old_price:'', badge:'', link:'#', wishlist:false },
-  { id:6, cat:'buku', emoji:'📖', bg:'linear-gradient(135deg,#1a237e,#283593)', name:'Fiqih Wanita Lengkap — Dr. Yusuf Qardhawi', cat_label:'Buku Islam', desc:'Panduan fiqih praktis untuk muslimah modern', price:'Rp 130.000', old_price:'Rp 165.000', badge:'', link:'#', wishlist:false },
-  { id:7, cat:'ibadah', emoji:'🕌', bg:'linear-gradient(135deg,#1B4332,#52B788)', name:'Mukena Jumbo Premium Bordir', cat_label:'Ibadah', desc:'Jumbo, nyaman untuk semua ukuran, bordir indah', price:'Rp 195.000', old_price:'', badge:'new', link:'#', wishlist:false },
-  { id:8, cat:'hijab', emoji:'🎀', bg:'linear-gradient(135deg,#c9847a,#e8b4ae)', name:'Set Hijab Segi Empat Daily 5 Pcs', cat_label:'Hijab', desc:'Paket hemat hijab daily, bahan adem dan anti menerawang', price:'Rp 175.000', old_price:'Rp 250.000', badge:'best', link:'#', wishlist:false },
+  { id:1, cat:'quran', img:'https://down-id.img.susercontent.com/file/id-11134207-7r98r-lwcqu8t99i8dcd.webp', name:'Al-Qur\'an Per Juz Tajwid & Terjemah Per Kata — Syaamil A5', cat_label:'Al-Qur\'an', desc:'Tajwid berwarna, terjemah perkata, ukuran A5 nyaman dibawa ke mana saja', price:'Rp 149.000', old_price:'Rp 179.000', badge:'best', link:'https://s.shopee.co.id/1VuwiRhIxN', wishlist:false },
+  { id:2, cat:'quran', img:'https://down-tx-id.img.susercontent.com/id-11134207-7rbkb-m76ex1r9vzak4e.webp', name:'Al-Qura\'an Hafalan Anak Al Hifz Junior - Quran Kisah Nabi Bisa Custom Nama dengan Terjemah, Tikrar & Pendidikan Agama Islam', cat_label:'Al-Qur\'an', desc:'Dilengkapi asbabun nuzul, tajwid berwarna, dan terjemah kata per kata lengkap', price:'Rp 89.000', old_price:'Rp 160.000', badge:'best', link:'https://s.shopee.co.id/1gEMuXqOFE', wishlist:false },
+  { id:3, cat:'quran', img:'https://down-bs-id.img.susercontent.com/id-11134207-7r990-llaa1dyxvhhof0.webp', name:'Alquran Mujaza Hafazan Per Juz A6 30 Jilid Box Mika Alquran Hafalan Mudah Bonus Buku Dzikir Pagi & Petang', cat_label:'Al-Qur\'an', desc:'Dilengkapi asbabun nuzul, tajwid berwarna, dan terjemah kata per kata lengkap', price:'Rp 69.000', old_price:'Rp 120.000', badge:'best', link:'https://s.shopee.co.id/1LbVrQymOI', wishlist:false },
+  
+  { id:4, cat:'ibadah', img:'https://down-tx-id.img.susercontent.com/id-11134207-7rbkc-m7m3l94ieh7452.webp', name:'Sajadah Turki Aesthetic Anti Slip - 70 x 110 CM', cat_label:'Ibadah', desc:'Tebal, lembut, motif Islam yang indah dan tahan lama', price:'Rp 60.000', old_price:'89.000', badge:'berkah', link:'https://s.shopee.co.id/8fO7FUNaIE', wishlist:false },
+  { id:5, cat:'ibadah', img:'https://down-bs-id.img.susercontent.com/id-11134207-81zth-meiiwno3wq9v81.webp', name:'Sajadah Turki Premium Glossy bahan Polyester Tebal 5 mm [Uk 70 x 110 Cm]', cat_label:'Ibadah', desc:'Tebal, lembut, motif Islam yang indah dan tahan lama', price:'Rp 55.999', old_price:'99.000', badge:'berkah', link:'https://s.shopee.co.id/1qXn6hpkPY', wishlist:false },
+  
+  { id:6, cat:'buku', img:'https://down-bs-id.img.susercontent.com/id-11134207-7rbk2-mamxdd53xi2c69.webp', name:'Buku Sirah Nabawiyah - Original Hardcover Ekslusif + Bonus Extra - Sejarah Hidup Nabi Muhammad ﷺ', cat_label:'Buku Sirah', desc:'Kisah lengkap kehidupan Nabi ﷺ, terjemahan terpercaya, edisi hardcover', price:'Rp 149.000', old_price:'Rp. 179.000', badge:'new', link:'https://s.shopee.co.id/60NM4LN1P4', wishlist:false },
+  { id:7, cat:'aksesoris', img:'https://down-bs-id.img.susercontent.com/id-11134207-7r990-lza7jkpsoezi57.webp', name:'Alquran Tajwid Warna Terjemah QRCode Heekaya Hardcover Aesthetic Yaumee', cat_label:'Aksesoris', desc:'Penerbit : Madina Quran, Ukuran A4 --> seukuran kertas HVS, A5 --> seukuran kertas HVS dibagi 2, Berat : 400 gram. Fitur Spesial : Mushaf al Quran berteknologi QR Code, Audio bacaan al Quran pada setiap blok, Hardcover berkualitas dengan emboss & foil, Bisa Untuk mushaf menghafal al Quran karena support metode tikrar, Mushaf standar Depag RI, Full Color', price:'Rp 75.000', old_price:'', badge:'', link:'https://s.shopee.co.id/BPXNlDmvH', wishlist:false },
+  { id:8, cat:'buku', img:'https://down-id.img.susercontent.com/file/id-11134207-7r98x-lsjo20z3jxx5ef.webp', name:'Fiqih Wanita Lengkap — Panduan Muslimah Modern', cat_label:'Buku Islam', desc:'Panduan fiqih praktis untuk muslimah modern, bahasa yang mudah dipahami', price:'Rp 130.000', old_price:'Rp 165.000', badge:'', link:'https://s.shopee.co.id/1VuwiRhIxN', wishlist:false },
+  { id:9, cat:'ibadah', img:'https://down-tx-id.img.susercontent.com/id-11134207-7rasj-m1z4thkq7rbd6d.webp', name:'Mukena Dewasa Premium Silk Lasercut Beatrix Bahan Lembut', cat_label:'Ibadah', desc:'Jumbo, nyaman untuk semua ukuran tubuh, Bahan Lembut', price:'Rp 135.000', old_price:'Rp 160.000', badge:'new', link:'https://s.shopee.co.id/8fO7FQh4eO', wishlist:false },
+  { id:10, cat:'ibadah', img:'https://down-bs-id.img.susercontent.com/id-11134207-7rbkc-m942md2sje358e.webp', name:'ABAYA-SET SYAR\'I ABAYA FREE PASHMINA JUMBO GAMIS BETTWING/GAMIS ABAYA SAUDI POLOS', cat_label:'Ibadah', desc:'Bahan Crinkel Airflow Premium, L dada bettwing bisa ke 250cm, Panjang abaya 138-140cm, Model tangan abaya bettwing, Sleting bagian depan, Saku bagian sisi kanan, nyaman untuk semua ukuran tubuh, Bahan Lembut', price:'Rp 125.000', old_price:'Rp 170.000', badge:'new', link:'https://s.shopee.co.id/2BAdVGy0bB', wishlist:false },
+  
+  { id:11, cat:'hijab', img:'https://down-tx-id.img.susercontent.com/id-11134207-7rasg-m0fmygzw1cuffd.webp', name:'Set Hijab Sport 7 Pcs', cat_label:'Hijab', desc:'Paket hemat hijab sport, bahan adem anti menerawang, cocok dipakai sehari-hari', price:'Rp 120.000', old_price:'Rp 150.000', badge:'best', link:'https://s.shopee.co.id/3qIrUhQV0b', wishlist:false },
 ];
 
 // ─── NAV ───
@@ -1367,8 +1372,13 @@ function renderStore(filter='semua'){
   const filtered=filter==='semua'?PRODUCTS:PRODUCTS.filter(p=>p.cat===filter);
   grid.innerHTML=filtered.map(p=>`
     <div class="product-card" id="prod-${p.id}">
-      <div class="product-img" style="background:${p.bg}">
-        <span style="font-size:52px">${p.emoji}</span>
+      <div class="product-img" style="background:var(--cream2);padding:0;overflow:hidden">
+        <img src="${p.img}" alt="${p.name}"
+          style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s"
+          onerror="this.style.display='none';this.parentNode.style.background='var(--cream3)'"
+          onmouseover="this.style.transform='scale(1.06)'"
+          onmouseout="this.style.transform='scale(1)'"
+        />
         ${p.badge==='new'?'<div class="product-badge-new">Baru</div>':''}
         ${p.badge==='best'?'<div class="product-badge-best">Terlaris</div>':''}
       </div>
@@ -1379,7 +1389,7 @@ function renderStore(filter='semua'){
         <div class="product-price">${p.price}${p.old_price?`<small>${p.old_price}</small>`:''}
         </div>
         <div class="product-actions">
-          <a class="product-affiliate-btn" href="${p.link}" onclick="trackAffiliate(${p.id},event)">
+          <a class="product-affiliate-btn" href="${p.link}" target="_blank" rel="noopener" onclick="trackAffiliate(${p.id},event)">
             🛒 Beli Sekarang
           </a>
           <button class="product-wishlist" id="wish-${p.id}" onclick="toggleWishlist(${p.id})">♡</button>
